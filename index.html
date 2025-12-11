@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>私のポートフォリオ | ストーンズ・遥</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* CSSカスタムプロパティ */
+:root {
+    --main-color: #004d40; /* 深い緑 */
+    --accent-color: #4db6ac; /* 明るめの緑（ホバーなど） */
+    --text-color: #333;
+    --bg-color: #ffffff;
+    --padding-section: 60px 20px;
+}
+
+/* --------------------
+* 1. ベーススタイルとフォント
+* -------------------- */
+body {
+    font-family: '游ゴシック体', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    margin-top: 0;
+}
+
+a {
+    color: var(--main-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: var(--padding-section);
+}
+
+section:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+/* --------------------
+* 2. ヘッダー (Header)
+* -------------------- */
+header {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+/* PC用ナビゲーション */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li a {
+    color: var(--bg-color);
+    padding: 10px 15px;
+    display: block;
+    font-weight: 400;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--bg-color);
+}
+
+/* --------------------
+* 3. ヒーローセクション (Hero)
+* -------------------- */
+.hero {
+    background: linear-gradient(rgba(0, 77, 64, 0.8), rgba(0, 77, 64, 0.8)), url('https://via.placeholder.com/1920x800/004d40/ffffff?text=HERO+BACKGROUND+IMAGE');
+    background-size: cover;
+    background-position: center;
+    color: var(--bg-color);
+    text-align: center;
+    padding: 150px 20px;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+/* --------------------
+* 4. 一般セクションタイトル (h3)
+* -------------------- */
+h3 { font-size: 2em; text-align: center; margin-bottom: 40px; position: relative; color: var(--main-color); }
+h3::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--accent-color); margin: 10px auto 0; }
+/* --------------------
+* 5. スキルセクション (Skills)
+* -------------------- */
+.skill-list { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+.skill-category { background: var(--bg-color); padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); flex: 1; min-width: 250px; }
+.skill-category h4 { color: var(--main-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 15px; font-size: 1.2em; }
+.skill-category ul { list-style: none; padding: 0; }
+.skill-category ul li { padding: 5px 0; border-bottom: 1px dotted #ccc; }
+/* --------------------
+* 6. 作品セクション (Works)
+* -------------------- */
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.work-item { background: var(--bg-color); border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+.work-item:hover { transform: translateY(-5px); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); }
+.work-item h4 { color: var(--main-color); font-size: 1.4em; margin-bottom: 10px; }
+.work-image-container { margin-top: 15px; margin-bottom: 15px; border: 1px solid #eee; overflow: hidden; border-radius: 4px; flex-grow: 1; display: flex; align-items: center; justify-content: center; min-height: 200px; cursor: pointer; }
+.work-image-container img { width: 100%; height: auto; display: block; object-fit: contain; transition: transform 0.3s; }
+.work-image-container:hover img { transform: scale(1.03); }
+
+/* --------------------
+* 7. コンタクトセクション (Contact)
+* -------------------- */
+.contact { text-align: center; }
+.contact address a { font-size: 1.2em; padding: 10px 20px; border: 2px solid var(--main-color); border-radius: 5px; display: inline-block; margin-top: 20px; transition: background-color 0.3s, color 0.3s; }
+.contact address a:hover { background-color: var(--main-color); color: var(--bg-color); }
+/* --------------------
+* 8. フッター (Footer)
+* -------------------- */
+footer { background-color: var(--main-color); color: var(--bg-color); text-align: center; padding: 20px 0; font-size: 0.9em; }
+
+/* --------------------
+* 10. 「私について」セクションの追加スタイル 
+* -------------------- */
+.about-section-content { 
+    display: flex; 
+    align-items: center; 
+    gap: 40px; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+.about-text { flex: 2; }
+.about-image { flex: 1; text-align: center; }
+.about-image img { 
+    /* プロフィール画像を120x120pxに設定 */
+    width: 120px; 
+    height: 120px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+}
+/* --------------------
+* 11. スクロールアニメーション用のスタイル (CSS)
+* -------------------- */
+.fade-in-target { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in-target.is-visible { opacity: 1; transform: translateY(0); }
+/* --------------------
+* 12. モーダル/オーバーレイのスタイル（画像拡大機能）
+* -------------------- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; justify-content: center; align-items: center; z-index: 2000; opacity: 0; transition: opacity 0.3s ease-in-out; cursor: default; }
+.modal-overlay.is-open { display: flex; opacity: 1; }
+.modal-content { max-width: 90%; max-height: 90%; position: relative; }
+.modal-content img { max-width: 100%; max-height: 100vh; display: block; border-radius: 5px; }
+.modal-close { position: absolute; top: 10px; right: 20px; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; line-height: 1; z-index: 2010; }
+.modal-close:hover { opacity: 1; }
+
+/* --------------------
+* 13. タイピングアニメーションのスタイル
+* -------------------- */
+.typing-text { display: inline-block; min-height: 1.2em; }
+.typing-text::after { content: '|'; display: inline-block; color: #fff; animation: blink-caret 0.7s step-end infinite; }
+.typing-text.finished::after { display: none; }
+@keyframes blink-caret { from, to { color: transparent; } 50% { color: #fff; } }
+
+/* --------------------
+* 14. ハンバーガーメニューのスタイル
+* -------------------- */
+.hamburger { display: none; width: 30px; height: 30px; position: relative; cursor: pointer; z-index: 1100; }
+.hamburger span { display: block; position: absolute; width: 100%; height: 3px; background-color: var(--bg-color); left: 0; transition: transform 0.3s, opacity 0.3s; }
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 13px; }
+.hamburger span:nth-child(3) { top: 26px; }
+.hamburger.is-active span:nth-child(1) { transform: translateY(13px) rotate(45deg); }
+.hamburger.is-active span:nth-child(2) { opacity: 0; }
+.hamburger.is-active span:nth-child(3) { transform: translateY(-13px) rotate(-45deg); }
+#mobile-menu { position: fixed; top: 0; right: -100%; width: 70%; max-width: 300px; height: 100vh; background-color: var(--main-color); padding-top: 80px; box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); transition: right 0.4s ease-in-out; z-index: 1050; overflow-y: auto; }
+#mobile-menu.is-open { right: 0; }
+#mobile-menu ul { list-style: none; padding: 0; margin: 0; }
+#mobile-menu ul li a { color: var(--bg-color); padding: 15px 25px; display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 400; }
+#mobile-menu ul li:last-child a { border-bottom: none; }
+#mobile-menu ul li a:hover { background-color: var(--accent-color); }
+.menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1040; cursor: pointer; opacity: 0; transition: opacity 0.4s ease-in-out; }
+.menu-overlay.is-open { display: block; opacity: 1; }
+
+/* --------------------
+* 9. レスポンシブ対応 (メディアクエリ)
+* -------------------- */
+@media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: block; }
+    header { align-items: center; justify-content: space-between; }
+    .hero { padding: 100px 20px; }
+    .hero h2 { font-size: 2.5em; }
+    .hero p { font-size: 1.2em; }
+    .skill-list { flex-direction: column; }
+    .skill-category { min-width: unset; width: 100%; margin-bottom: 20px; }
+    .work-grid { grid-template-columns: 1fr; }
+    /* スマホ表示時、画像とテキストを縦並びに戻す */
+    .about-section-content { flex-direction: column; text-align: center; }
+    .about-image { margin-bottom: 20px; }
+    /* スマホ表示時、画像サイズを調整 */
+    .about-image img { width: 100px; height: 100px; }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="site-title">
+<h1>私のポートフォリオ</h1>
+</div>
+
+<div class="hamburger" id="hamburger-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<nav>
+<ul>
+<li><a href="#hero">ホーム</a></li>
+<li><a href="#about">私について</a></li>
+<li><a href="#skills">スキル</a></li>
+<li><a href="#works">作品</a></li>
+<li><a href="#contact">お問い合わせ</a></li>
+</ul>
+</nav>
+</header>
+
+<div id="mobile-menu">
+    <ul>
+        <li><a href="#hero">ホーム</a></li>
+        <li><a href="#about">私について</a></li>
+        <li><a href="#skills">スキル</a></li>
+        <li><a href="#works">作品</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+</div>
+<div class="menu-overlay" id="menu-overlay"></div>
+
+<main class="container">
+<section id="hero" class="hero">
+<h2 data-text="ストーンズ・遥のポートフォリオ">
+    <span id="typing-output" class="typing-text"></span>
+</h2>
+<p>なでしこ就労支援講座で学んだスキルの報告です</p>
+</section>
+
+<section id="about" class="about">
+<h3 class="fade-in-target">私について</h3>
+<div class="about-section-content fade-in-target">
+    <div class="about-text">
+        <p>AIを中心としたデジタルスキルで新しい知見を得ています。</p>
+        <p>なでしこ就労支援講座では、主にウェブデザインとAI活用について深く学びました。</p>
+    </div>
+    <div class="about-image">
+        <img src="images/nigaoe.png" alt="ストーンズ・遥のプロフィール画像">
+    </div>
+</div>
+</section>
+
+<section id="skills" class="skills">
+<h3 class="fade-in-target">スキル</h3>
+<div class="skill-list">
+<article class="skill-category fade-in-target">
+<h4>Web開発</h4>
+<ul>
+<li>Canva</li>
+<li>Figma</li>
+</ul>
+</article>
+<article class="skill-category fade-in-target">
+<h4>その他</h4>
+<ul>
+<li>カラーコーディネーターアドバンスクラス</li>
+<li>英検２級</li>
+<li>各種情報処理技術者資格、各種ビジネス検定</li>
+</ul>
+</article>
+</div>
+</section>
+
+<section id="works" class="works">
+<h3 class="fade-in-target">作品</h3>
+<div class="work-grid">
+<article class="work-item fade-in-target">
+    <h4>パン広告「イラストオンリー」</h4>
+    <p>新しいベーカリーのオープン広告です。AIを活用し、水彩風のパンイラストで温かい雰囲気を表現しました。</p>
+    <div class="work-image-container">
+        <img src="images/2.png" alt="パン広告「イラストオンリー」作品画像" data-full-src="images/2.png">
+    </div>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+<article class="work-item fade-in-target">
+    <h4>パン広告「写真つき」</h4>
+    <p>写真とキッシュをメインにしたオープン告知広告です。パンの実物を使い、食欲をそそるようにデザインしました。</p>
+    <div class="work-image-container">
+        <img src="images/1.png" alt="パン広告「写真つき」作品画像" data-full-src="images/1.png">
+    </div>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+<article class="work-item fade-in-target">
+    <h4>新作オーガニックコーヒー広告</h4>
+    <p>期間限定で展開した新作オーガニックコーヒーのインスタグラム広告です。心ほどけるような、優しい雰囲気を表現しました。</p>
+    <div class="work-image-container">
+        <img src="images/【インスタ広告】新作オーガニックコーヒー.png" alt="新作オーガニックコーヒー広告作品画像" data-full-src="images/【インスタ広告】新作オーガニックコーヒー.png">
+    </div>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+<article class="work-item fade-in-target">
+    <h4>新聞記事</h4>
+    <p>作品の概要や使用技術を記述。</p>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+<article class="work-item fade-in-target">
+    <h4>バースデーカード</h4>
+    <p>作品の概要や使用技術を記述。</p>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+<article class="work-item fade-in-target">
+    <h4>作品タイトル６</h4>
+    <p>作品の概要や使用技術を記述。</p>
+    <a href="#" target="_blank">詳細を見る</a>
+</article>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h3 class="fade-in-target">お問い合わせ</h3>
+<p>お仕事のご依頼やご質問など、お気軽にご連絡ください。</p>
+<address>
+<a href="mailto:your.email@example.com">メールで連絡する</a>
+</address>
+</section>
+
+</main>
+
+<footer>
+<p>&copy; 2025 ストーンズ・遥. All rights reserved.</p>
+</footer>
+
+<div id="imageModal" class="modal-overlay">
+    <span class="modal-close">&times;</span>
+    <div class="modal-content">
+        <img id="modalImage" src="" alt="拡大画像">
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    
+    // --- モーダル/画像拡大機能 ---
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeButton = document.querySelector('.modal-close');
+    const workContainers = document.querySelectorAll('.work-image-container');
+
+    function openModal(src) {
+        modalImage.src = src;
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    workContainers.forEach(container => {
+        const img = container.querySelector('img'); 
+
+        container.addEventListener('click', (e) => {
+            if (e.target.tagName.toLowerCase() === 'a') {
+                return;
+            }
+            const fullSrc = img ? (img.getAttribute('data-full-src') || img.src) : null;
+            if (fullSrc) {
+                openModal(fullSrc);
+            }
+        });
+    });
+
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target === closeButton) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+
+    // --- ハンバーガーメニュー関連 ---
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    function closeMenu() {
+        hamburgerIcon.classList.remove('is-active');
+        mobileMenu.classList.remove('is-open');
+        menuOverlay.classList.remove('is-open');
+    }
+    
+    function openMenu() {
+        hamburgerIcon.classList.add('is-active');
+        mobileMenu.classList.add('is-open');
+        menuOverlay.classList.add('is-open');
+    }
+
+    hamburgerIcon.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+            closeMenu();
+        }
+    });
+
+    // --- ヒーローセクションのタイピングアニメーション機能 ---
+    const typingOutput = document.getElementById('typing-output');
+    const h2Element = typingOutput.closest('h2');
+    const textToType = h2Element ? h2Element.getAttribute('data-text') : null;
+    let charIndex = 0;
+    const typingSpeed = 100;
+
+    function typeText() {
+        if (!textToType) return;
+        if (charIndex < textToType.length) {
+            typingOutput.textContent += textToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeText, typingSpeed);
+        } else {
+            typingOutput.classList.add('finished');
+        }
+    }
+
+    if (textToType) {
+        typeText();
+    }
+
+
+    // --- スクロールアニメーション機能 ---
+    const targets = [
+        ...document.querySelectorAll('h3.fade-in-target'),
+        ...document.querySelectorAll('.about-section-content.fade-in-target'), 
+        ...document.querySelectorAll('.skill-category.fade-in-target'),
+        ...document.querySelectorAll('.work-item.fade-in-target')
+    ];
+    
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.2 };
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    targets.forEach(target => { observer.observe(target); });
+    
+    
+    // --- スムーズスクロール ---
+    const navLinks = document.querySelectorAll('nav ul li a');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const targetId = link.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerHeight = header.offsetHeight;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = window.pageYOffset;
+                const targetScrollPosition = offsetPosition + elementPosition - headerHeight;
+                window.scrollTo({ top: targetScrollPosition, behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
